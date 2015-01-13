@@ -1,4 +1,4 @@
 # simple-person-tracker
-Designed to track people through simple colored blob tracking from a top-down webcam. Provides a server that position and orientation of tracked people.
+OpenCV based project, designed to track people through simple colored blob tracking from a top-down webcam. Provides a web-socket based server that returns position and orientation of tracked people.
 
 See readme.txt for installation instructions.
