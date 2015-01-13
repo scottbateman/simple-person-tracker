@@ -1,3 +1,24 @@
+/////////////////////////////////////////////////////////////////////////////////////
+Documentation
+
+Server (main.cpp) - provides tracking of blobs (colored paper arrows) from a webcam facing downwards.
+	Provides a websocket interface for querying the position and orientation of tracked arrows.
+
+	bool isServer: Run in local or server mode
+	bool isTesting: Run a trackbar window to filer color ranges.
+	
+	int H_MIN1,H_MAX1,S_MIN1,S_MAX1,V_MIN1,V_MAX1 values determine green color range.
+	int H_MIN2,H_MAX2,S_MIN2,S_MAX2,V_MIN2,V_MAX2 values determine yellow color range.
+	int H_MIN3,H_MAX3,S_MIN3,S_MAX3,V_MIN1,V_MAX3 values determine blue color range.
+	These HSV values could be different in various lightning environment, so it's better to check color ranges again using the trackbar window.
+	If more colors are needed to add, insert a function call checkColor("newColor", HSV, cameraFeed, newH_MIN, newH_MAX, newS_MIN, newS_MAX, newV_MIN, newV_MAX) in processFrame() with appropriate HSV value.
+	
+
+Client (index.html)
+	A test html page to check server connection. Input some text and click button to receive JSON data from server.
+
+///////////////////////////////////////////////////////////////////////////////////	
+
 OpenCV
 
 Windows: Download OpenCV from http://opencv.org/downloads.html (prefer ver 2.4.9)
@@ -73,21 +94,3 @@ On Windows using Visual Studio 2012
 On Linux
 	$ g++ -I/path/to/libwebsockets/lib -I/path/to/rapidjson/include -I/path/to/opencv/include  -L/path/to/opencv/build/lib -L/path/to/libwebsockets/build/lib -g -o appOpenCV  main1.cpp -lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_ml -lopencv_video -lopencv_features2d -lopencv_calib3d -lopencv_objdetect -lopencv_contrib -lopencv_legacy -lopencv_stitching -lwebsockets 
 
-/////////////////////////////////////////////////////////////////////////////////////
-Documentation
-
-Server (main.cpp)
-
-	bool isServer: Run in local or server mode
-	bool isTesting: Run a trackbar window to filer color ranges.
-	
-	int H_MIN1,H_MAX1,S_MIN1,S_MAX1,V_MIN1,V_MAX1 values determine green color range.
-	int H_MIN2,H_MAX2,S_MIN2,S_MAX2,V_MIN2,V_MAX2 values determine yellow color range.
-	int H_MIN3,H_MAX3,S_MIN3,S_MAX3,V_MIN1,V_MAX3 values determine blue color range.
-	These HSV values could be different in various lightning environment, so it's better to check color ranges again using the trackbar window.
-	If more colors are needed to add, insert a function call checkColor("newColor", HSV, cameraFeed, newH_MIN, newH_MAX, newS_MIN, newS_MAX, newV_MIN, newV_MAX) in processFrame() with appropriate HSV value.
-	
-
-Client (index.html)
-	A test html page to check server connection, input texts and click button to receive JSON data from server.
-	
